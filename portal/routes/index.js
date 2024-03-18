@@ -22,7 +22,7 @@ router.get("/mindmap/details/:key", [authMiddleware, getMindmapDetails]);
 router.post("/mindmap/delete/:key", [authMiddleware, deleteMindmapKey]);
 router.get("/mindmap/download", [authMiddleware, downloadMindmaps]);
 router.post("/mindmap/toggleStatus", [authMiddleware, toggleMindmapActiveStatus]);
-router.post("/mindmap/startCall", [ startCall]);
+router.post("/mindmap/startCall", [authMiddleware, startCall]);
 
 router.use("/mindmap", require("./notification.route"));
 router.use("/messages", require("./message.route"));
