@@ -294,7 +294,12 @@ const toggleMindmapActiveStatus = async (req, res) => {
 };
 
 const startCall = async (req, res) => {
-  const msgHost = `https://api-voice.kaleyra.com/v1/?api_key=${process.env.KALEYRA_VOICE_API_KEY}&method=dial.click2call&caller=${req.body.callerMobileNo}&receiver=${req.body.patientMobileNo}`;
+  const { callerMobileNo, patientMobileNo } = req.body;
+  if (!(callerMobileNo && patientMobileNo)) {
+    logStream("debug", "Missing Arguments", "Mindmap Kaleyra Start Call API");
+    RES(res, { message: MESSAGE.COMMON.BAD_REQUEST, success: false }, 400);
+  }
+  const msgHost = `https://api-voice.kaleyra.com/v1/?api_key=${process.env.KALEYRA_VOICE_API_KEY}&method=dial.click2call&caller=${callerMobileNo}&receiver=${patientMobileNo}`;
   try {
     const data = await new Promise((res, rej) => {
       request.post(msgHost, function (err, response) {
