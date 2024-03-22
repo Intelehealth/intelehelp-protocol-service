@@ -1,0 +1,14 @@
+{
+  "name": "turnserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Zeeshan A",
+  "license": "ISC",
+  "dependencies": {
+    "node-turn": "^0.0.6"
+  }
+}
